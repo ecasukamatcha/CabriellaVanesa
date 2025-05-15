@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PinkyNess Coffee</title>
+<style>
+
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff;
+    color: #4b004b;
+    line-height: 1.6;
+  }
+  a {
+    text-decoration: none;
+    color: #d147a3;
+    cursor: pointer;
+  }
+  a:hover {
+    color: #a8347f;
+  }
+  header {
+    background: #f8bbd0;
+    color: #4b004b;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(209, 132, 175, 0.5);
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+  }
+  nav a {
+    font-weight: 700;
+    font-size: 1.15rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  nav a.active {
+    background-color: #d147a3;
+    color: #fff;
+  }
+  nav a:hover:not(.active) {
+    background-color: #e993c3;
+    color: #4b004b;
+  }
+  main {
+    max-width: 960px;
+    margin: 2rem auto 4rem;
+    padding: 0 1rem;
+    min-height: 600px;
+    position: relative;
+  }
+  section.page {
+    display: none;
+    animation: fadein 0.5s ease forwards;
+  }
+  section.page.active {
+    display: block;
+  }
+  @vnesacbrlla fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  /* Beranda styles */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 18px;
+    background: #fee9f2;
+    padding: 2rem 1rem;
+    box-shadow: 0 4px 12px rgba(209, 132, 175, 0.4);
+  }
+  .hero img {
+    width: 320px;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 6px 16px rgba(209, 132, 175, 0.5);
+  }
+  .hero h1 {
+    font-size: 2.8rem;
+    margin: 0 0 0.4rem;
+    font-weight: 900;
+  }
+  .hero p {
+    font-size: 1.25rem;
+    max-width: 700px;
+    color: #6a2c5a;
+    margin: 0 0 1.8rem;
+  }
+  .btn-primary {
+    background-color: #d147a3;
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 35px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .btn-primary:hover {
+    background-color: #a8347f;
+  }
+  section.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .feature {
+    background: #fce9f3;
+    border-radius: 16px;
+    box-shadow: 2px 2px 10px #e2a9cc;
+    flex: 1 1 280px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  .feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 4px 4px 15px #e07ebe;
+  }
+  .feature h2 {
+    margin-bottom: 1rem;
+    color: #7b2a57;
+    font-size: 1.6rem;
+  }
+  .feature p {
+    color: #8e3a75;
+    font-size: 1.1rem;
+  }
+  /* Menu styles */
+  h1.page-title {
+    text-align: center;
+    font-size: 2.6rem;
+    margin-bottom: 2rem;
+    font-weight: 900;
+  }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 2rem;
+  }
+  .menu-item {
+    background: #fee9f2;
+    border-radius: 16px;
+    box-shadow: 2px 2px 10px #e2a9cc;
+    padding: 1.8rem 1.5rem;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .menu-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 4px 4px 15px #e07ebe;
+  }
+  .menu-item img {
+    border-radius: 14px;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(209, 132, 175, 0.4);
+  }
+  .menu-item h3 {
+    margin-top: 0;
+    color: #7b2a57;
+    font-size: 1.4rem;
+  }
+  .menu-item p {
+    color: #8e3a75;
+    font-size: 1rem;
+    flex-grow: 1;
+  }
+  .price {
+    font-weight: 700;
+    color: #a8347f;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+  }
+
+  /* About styles */
+  h1.page-title {
+    text-align: center;
+    font-size: 2.6rem;
+    margin-bottom: 2rem;
+    font-weight: 900;
+  }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 2rem;
+  }
+  .menu-item {
+    background: #fee9f2;
+    border-radius: 16px;
+    box-shadow: 2px 2px 10px #e2a9cc;
+    padding: 1.8rem 1.5rem;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .menu-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 4px 4px 15px #e07ebe;
+  }
+  .menu-item img {
+    border-radius: 14px;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(209, 132, 175, 0.4);
+  }
+
+  .menu-item p {
+    color: #8e3a75;
+    font-size: 1rem;
+    flex-grow: 1;
+  }
+
+
+  /* Contact styles */
+  .contact-info {
+    background: #fee9f2;
+    border-radius: 16px;
+    box-shadow: 2px 2px 12px #e2a9cc;
+    padding: 2rem 2rem 3rem;
+    color: #7a2f6f;
+  }
+  .contact-info h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+  .contact-info p {
+    font-size: 1.1rem;
+    margin: 0.4rem 0;
+  }
+  .map {
+    margin-top: 2rem;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(209, 132, 175, 0.4);
+  }
+  iframe {
+    width: 100%;
+    height: 280px;
+    border: none;
+  }
+  form {
+    margin-top: 3rem;
+    background: #fee9f2;
+    border-radius: 16px;
+    padding: 2rem 2rem 2.5rem;
+    box-shadow: 2px 2px 12px #e2a9cc;
+  }
+  form h2 {
+    margin-bottom: 1.2rem;
+    color: #7b2a57;
+    font-size: 1.8rem;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #8e3a75;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 0.55rem 0.8rem;
+    margin-bottom: 1.2rem;
+    border-radius: 10px;
+    border: 2px solid #d147a3;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.25s ease;
+  }
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: #a8347f;
+  }
+  button {
+    background: #d147a3;
+    border: none;
+    color: white;
+    padding: 0.8rem 2rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 35px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background: #a8347f;
+  }
+  footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background: #f8bbd0;
+    color: #4b004b;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 -3px 6px rgba(209, 132, 175, 0.4);
+  }
+  /* Responsive */
+  @media (max-width: 700px) {
+    .hero img {
+      width: 90vw;
+    }
+    .feature {
+      flex: 1 1 100%;
+    }
+    nav {
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .menu-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <nav aria-label="Navigasi utama">
+    <a href="#" class="active" data-target="home" id="nav-home">Beranda</a>
+    <a href="#" data-target="menu" id="nav-menu">Menu</a>
+    <a href="#" data-target="about" id="nav-about">Tentang Kami</a>
+    <a href="#" data-target="contact" id="nav-contact">Kontak</a>
+  </nav>
+</header>
+<main>
+
+  <section id="home" class="page active" aria-label="Halaman Beranda">
+    <section class="hero" aria-label="Bagian Selamat Datang">
+      <img src="PinkyNess Coffee.jpeg" alt="Secangkir kopi di atas meja" />
+      <h1>Selamat Datang di PinkyNess Coffee</h1>
+      <p>Kami menyajikan kenikmatan kopi terbaik dengan sentuhan modern dan suasana hangat yang membuat Anda betah berlama-lama. Rasakan aroma kopi yang menggoda serta layanan ramah dari barista kami.</p>
+      <button class="btn-primary" id="button-go-menu">Lihat Menu</button>
+    </section>
+    <section class="features" aria-label="Keunggulan PinkyNess Coffee">
+      <article class="feature">
+        <h2>Kopi Berkualitas Tinggi</h2>
+        <p>Biji kopi pilihan yang dipanggang secara khusus agar cita rasa tetap otentik dan segar di setiap tegukan.</p>
+      </article>
+      <article class="feature">
+        <h2>Suasana Nyaman, Feminim, dan Instagramable</h2>
+        <p>Tempat nyaman dengan dekorasi modern bernuansa pink yang cocok untuk bersantai, mengerjakan tugas, bekerja, atau bertemu teman.</p>
+      </article>
+      <article class="feature">
+        <h2>Barista Profesional</h2>
+        <p>Tim kami siap menyajikan kopi favorit Anda dengan penuh cinta dan keahlian.</p>
+      </article>
+      <article class="feature">
+        <h2>Berbagai Pilihan Menu</h2>
+        <p>Dari espresso hingga minuman kopi kreatif serta variasi makanan ringan sebagai pelengkap.</p>
+      </article>
+    </section>
+  </section>
+
+  <section id="menu" class="page" aria-label="Halaman Menu">
+    <h1 class="page-title">Daftar Menu PinkyNess Coffee</h1>
+    <div class="menu-grid" aria-label="Daftar Menu Kopi">
+      <article class="menu-item">
+        <img src="Espresso.jpeg" />
+        <h3>Espresso</h3>
+        <p>Kopi hitam pekat dengan rasa kuat dan aroma yang memikat, disajikan dalam cangkir kecil.</p>
+        <div class="price">Rp15.000</div>
+      </article>
+      <article class="menu-item">
+        <img src="Latte.jpeg" />
+        <h3>Latte</h3>
+        <p>Kopi espresso dicampur dengan susu hangat berbusa lembut, memberikan rasa manis dan creamy.</p>
+        <div class="price">Rp25.000</div>
+      </article>
+      <article class="menu-item">
+        <img src="Cappuccino.jpeg" alt="Cappuccino" />
+        <h3>Cappuccino</h3>
+        <p>Kombinasi espresso, susu panas, dan busa susu yang kental, cocok untuk pecinta kopi klasik.</p>
+        <div class="price">Rp25.000</div>
+      </article>
+      <article class="menu-item">
+        <img src="Mocha.jpeg" alt="Mocha" />
+        <h3>Mocha</h3>
+        <p>Perpaduan kopi, cokelat, dan susu yang lezat, cocok untuk yang ingin rasa manis dan sedikit kakao.</p>
+        <div class="price">Rp25.000</div>
+      </article>
+      <article class="menu-item">
+        <img src="Americano.jpeg" alt="Americano" />
+        <h3>Americano</h3>
+        <p>Espresso yang dicairkan dengan air panas, memberikan rasa ringan yang tetap kuat dan nikmat.</p>
+        <div class="price">Rp23.000</div>
+      </article>
+      <article class="menu-item">
+        <img src="Es Kopi Susu.jpeg" alt="Es Kopi Susu" />
+        <h3>Es Kopi Susu</h3>
+        <p>Kopi dingin dengan gabungan susu dan es batu, pilihan sempurna untuk hari yang panas.</p>
+        <div class="price">Rp18.000</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="about" class="page" aria-label="Halaman Tentang Kami">
+    <h1 class="page-title">Tentang PinkyNess Coffee</h1>
+    <section class="hero" aria-label="Bagian Selamat Datang">
+      <img src="About Pinky Cooffee.jpeg" alt="Secangkir kopi di atas meja kayu" />
+      <p>PinkyNess Coffee di bangun sejak tahun 2020 hingga sekarang, PinkyNess Coffee juga masih terkenal karena suasana nya yang berbeda dan nyaman. PinkyNess Coffee adalah Coffee Shop yang memiliki nuansa feminim dengan latar belakang warna pink, tempat ini menjadi tempat yang nyaman dan enak untuk ngobrol santai bersama teman, rekan kerja, ataupun orang-orang tersayang, juga menyediakan yang namanya wifi gratis. Selain mengerjakan tugas, Anda bisa makan, minum, dan gaya hidup bersama mahasiswa yang lain.</p>
+    </section>
+  </section>
+  
+  <section id="contact" class="page" aria-label="Halaman Kontak">
+    <h1 class="page-title">Hubungi PinkyNess Coffee</h1>
+    <section class="contact-info" aria-label="Informasi Kontak">
+      <h2>Alamat</h2>
+      <p>Jl. Pinky, Yogyakarta, Indonesia.</p>
+      <h2>Jam Buka</h2>
+      <p>Senin - Jumat: 08.00 - 00.00 WIB</p>
+      <p>Sabtu - Minggu: 09.00 - 01.00 WIB</p>
+      <h2>Telepon</h2>
+      <p>+62 812 4076 5515</p>
+      <h2>Instagram</h2>
+      <p>@vnesacbrlla</p>
+      <h2>Email</h2>
+      <p>info cabriellavanesa@gmail.com</p>
+    </section>
+    <section class="map" aria-label="Peta Lokasi Pinky Coffee">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.236828523694!2d106.82118071431565!3d-6.197704295521777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5f30bc8ef2f%3A0xf873d9a6989a8aed!2sJalan%20Kopi%20Bahagia!5e0!3m2!1sid!2sid!4v1686485220000!5m2!1sid!2sid" 
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" 
+        title="Peta PinkyNess Coffee"
+      ></iframe>
+    </section>
+    <form aria-label="Form Kontak" id="contact-form">
+      <h2>Kirim Pesan</h2>
+      <label for="name">Nama Lengkap</label>
+      <input type="text" id="name" name="name" required placeholder="Masukkan nama anda" />
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="Masukkan email anda" />
+      <label for="message">Pesan</label>
+      <textarea id="message" name="message" rows="5" required placeholder="Tulis pesan anda"></textarea>
+      <button type="submit">Kirim</button>
+    </form>
+  </section>
+</main>
+<footer>
+  &copy; 2025 PinkyNess Coffee. Semua hak cipta dilindungi.
+</footer>
+<script>
+  const pages = document.querySelectorAll('section.page');
+  const navLinks = document.querySelectorAll('nav a');
+  const buttonGoMenu = document.getElementById('button-go-menu');
+  const contactForm = document.getElementById('contact-form');
+
+  function showPage(pageId) {
+    pages.forEach(page => {
+      page.classList.toggle('active', page.id === pageId);
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.dataset.target === pageId);
+    });
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(link.dataset.target);
+    });
+  });
+
+  buttonGoMenu.addEventListener('click', () => {
+    showPage('menu');
+  });
+
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Terima kasih atas pesan Anda! Kami akan segera menghubungi Anda.');
+    contactForm.reset();
+  });
+</script>
+</body>
+</html>
